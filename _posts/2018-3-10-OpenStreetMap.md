@@ -11,4 +11,8 @@ From my first understanding on how to do get map data, we first have to download
 
 The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downloading) explains how to download the whole map data for the planet, which is several dozens of GBs. We want to start small and only want to download a small area like Indiranagar neighborhood in the city of Bangalore, India. Fortunately there is a tool available to [extract a defined geo-fence](https://extract.bbbike.org/).
 
-![OSM extract area]({{ site.baseurl }}/images/osm_extract_area.png)
+![Extract area]({{ site.baseurl }}/images/OSM/extract_area.png)
+
+The extract download link is sent by email and is in PBF format ([Protocolbuffer Binary Format](https://wiki.openstreetmap.org/wiki/PBF_Format)).
+
+
