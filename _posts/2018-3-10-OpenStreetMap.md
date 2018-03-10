@@ -14,7 +14,7 @@ The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downlo
 ![Extract area]({{site.baseurl}}/images/OSM/extract_area.png)
 *Extract OpenStreetMap area interface*
 
-The extract download link is sent by email and is in PBF format ([Protocolbuffer Binary Format](https://wiki.openstreetmap.org/wiki/PBF_Format)). Here is the saved link to [Indiranagar area pbf file]({{site.baseurl}}/images/OSM/planet_77.64_12.973_4379f04c.osm.pbf).
+The extract download link is sent by email in PBF format ([Protocolbuffer Binary Format](https://wiki.openstreetmap.org/wiki/PBF_Format)). Here is the saved link to [Indiranagar area pbf file]({{site.baseurl}}/images/OSM/planet_77.64_12.973_4379f04c.osm.pbf).
 
 ## Parsing data
 
