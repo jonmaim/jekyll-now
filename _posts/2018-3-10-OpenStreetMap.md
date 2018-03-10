@@ -19,3 +19,27 @@ The extract download link is sent by email in PBF format ([Protocolbuffer Binary
 ## Parsing data
 
 Next step is to parse the PBF file with your programming tool of choice. In my case it is NodeJS with the help of the [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) module.
+
+```
+#!/usr/bin/env node
+
+'use strict';
+
+var fs = require('fs');
+var through = require('through2');
+var parseOSM = require('osm-pbf-parser');
+
+var osm = parseOSM();
+fs.createReadStream(process.argv[2])
+    .pipe(osm)
+    .pipe(through.obj(function (items, enc, next) {
+        items.forEach(function (item) {
+            console.log('item=', item);
+        });
+        next();
+    }))
+;
+```
+```
+./index.js planet_77.64_12.973_4379f04c.osm.pbf 
+```
