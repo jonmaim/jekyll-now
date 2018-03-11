@@ -61,7 +61,7 @@ An OSM file contains a list of elements. An element is either a node, a way or a
 [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) A node is a single point in space defined by its latitude, longitude.
 
 ### Way
-[![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Way) A way is an ordered list of nodes
+[![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) A way is an ordered list of nodes
 
 ### Relation
-[![OSM relation]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
+[![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
