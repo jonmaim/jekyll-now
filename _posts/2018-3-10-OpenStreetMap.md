@@ -16,30 +16,50 @@ The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downlo
 
 The extract download link is sent by email in PBF format ([Protocolbuffer Binary Format](https://wiki.openstreetmap.org/wiki/PBF_Format)). Here is the saved link to [Indiranagar area pbf file]({{site.baseurl}}/images/OSM/planet_77.64_12.973_4379f04c.osm.pbf).
 
-## Parsing data
+## Parsing and understanding data
 
-Next step is to parse the PBF file with your programming tool of choice. In my case it is NodeJS with the help of the [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) module.
+Next step is to parse the PBF file with your programming tool of choice. In my case it is NodeJS with the help of the [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) module. 
+
+Indiranagar contains 7682 nodes, 1824 ways and 22 relations.
 
 ```
-#!/usr/bin/env node
-
-'use strict';
-
 var fs = require('fs');
 var through = require('through2');
 var parseOSM = require('osm-pbf-parser');
 
+var types = {};
+
 var osm = parseOSM();
-fs.createReadStream(process.argv[2])
-    .pipe(osm)
-    .pipe(through.obj(function (items, enc, next) {
-        items.forEach(function (item) {
-            console.log('item=', item);
-        });
-        next();
-    }))
-;
+
+var stream = fs.createReadStream(process.argv[2]).pipe(osm).pipe(through.obj(function(items, enc, next) {
+  console.log('#', items.length);
+  items.forEach(function(item) {
+    types[item.type] = types[item.type] || 0;
+    ++types[item.type];
+
+    if (item.type === 'relation') {
+      console.log('item=', item);
+    }
+
+    //console.log('.');
+  });
+
+  next();
+}));
+
+stream.on('error', function(err){
+  console.log('error', err);
+});
+stream.on('finish', function(){
+  console.log('finish', types);
+});
 ```
+
+Here is how to reproduce the results:
 ```
+git clone https://github.com/jonmaim/indiranagar_bangalore_openstreetmap;
+cd indiranagar_bangalore_openstreetmap;
+yarn;
 ./index.js planet_77.64_12.973_4379f04c.osm.pbf 
 ```
+
