@@ -16,17 +16,15 @@ The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downlo
 
 The extract download link is sent by email in PBF format ([Protocolbuffer Binary Format](https://wiki.openstreetmap.org/wiki/PBF_Format)). Here is the saved link to [Indiranagar area pbf file]({{site.baseurl}}/images/OSM/planet_77.64_12.973_4379f04c.osm.pbf).
 
-## Parsing and understanding data
+## Parsing data
 
 Next step is to parse the PBF file with your programming tool of choice. In my case it is `node` with `yarn` module installer. There is a module called [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) that will allow us to easily load a `pbf` file. 
 
-Let's get started!
+Let's get started and install the modules.
 ```
-yarn add osm-pbf-parser;
+yarn add osm-pbf-parser through2;
 ```
-
-Indiranagar contains 7682 nodes, 1824 ways and 22 relations.
-
+Now, let's iterate over all items in the `pbf` file.
 ```
 var fs = require('fs');
 var through = require('through2');
@@ -45,26 +43,23 @@ var stream = fs.createReadStream(process.argv[2]).pipe(osm).pipe(through.obj(fun
     if (item.type === 'relation') {
       console.log('item=', item);
     }
-
-    //console.log('.');
   });
 
   next();
 }));
 
-stream.on('error', function(err){
-  console.log('error', err);
-});
 stream.on('finish', function(){
   console.log('finish', types);
 });
 ```
+Once the program ends, we discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and 22 relations.
 
-Here is how to reproduce the results:
-```
-git clone https://github.com/jonmaim/indiranagar_bangalore_openstreetmap;
-cd indiranagar_bangalore_openstreetmap;
-yarn;
-./index.js planet_77.64_12.973_4379f04c.osm.pbf 
-```
+## OSM node
+![OSM node]({{site.baseurl}}/images/OSM/node.png)
+
+## OSM way
+![OSM node]({{site.baseurl}}/images/OSM/node.png)
+
+## OSM relation
+![OSM relation]({{site.baseurl}}/images/OSM/node.png)
 
