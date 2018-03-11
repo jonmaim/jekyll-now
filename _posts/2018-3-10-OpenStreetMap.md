@@ -58,7 +58,10 @@ Once the program ends, we discover that the Indiranagar neighborhood contains 76
 An OSM file contains a list of elements. An element is either a node, a way or a relation.
 
 ### Node
-[![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) A node is a single point in space defined by its latitude, longitude.
+
+| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by its latitude, longitude. |
+|---|---|
+
 
 ### Way
 [![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) A way is an ordered list of nodes
