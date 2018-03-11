@@ -18,7 +18,7 @@ The extract download link is sent by email in PBF format ([Protocolbuffer Binary
 
 ## Parsing and understanding data
 
-Next step is to parse the PBF file with your programming tool of choice. In my case it is NodeJS with the help of the [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) module. 
+Next step is to parse the PBF file with your programming tool of choice. In my case it is `node` with `yarn` module installer. There is a module called [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) that will allow us to easily load a `pbf` file. 
 
 Let's get started!
 ```
