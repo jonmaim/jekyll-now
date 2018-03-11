@@ -25,7 +25,7 @@ Let's get started and install the modules.
 yarn add osm-pbf-parser through2;
 ```
 Now, let's iterate over all items in the `pbf` file.
-```javascript
+``` javascript
 var fs = require('fs');
 var through = require('through2');
 var parseOSM = require('osm-pbf-parser');
