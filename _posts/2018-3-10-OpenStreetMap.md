@@ -20,6 +20,11 @@ The extract download link is sent by email in PBF format ([Protocolbuffer Binary
 
 Next step is to parse the PBF file with your programming tool of choice. In my case it is NodeJS with the help of the [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) module. 
 
+Let's get started!
+```
+yarn add osm-pbf-parser;
+```
+
 Indiranagar contains 7682 nodes, 1824 ways and 22 relations.
 
 ```
