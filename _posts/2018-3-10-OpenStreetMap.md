@@ -52,7 +52,11 @@ stream.on('finish', function(){
   console.log('finish', types);
 });
 ```
-Once the program ends, we discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and 22 relations.
+Let's run this program.
+```
+node index.js planet_77.64_12.973_4379f04c.osm.pbf
+```
+We discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and 22 relations.
 
 ## OpenStreetMap elements
 An OSM file contains a list of elements. An element is either a node, a way or a relation.
