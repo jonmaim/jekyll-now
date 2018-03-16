@@ -62,6 +62,7 @@ We discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and
 An OSM file contains a list of elements. An element is either a node, a way or a relation.
 
 ### Node
+
 | [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by its latitude, longitude. |
 
 ### Way
@@ -91,5 +92,6 @@ Parsing the map data and then understand it will allow us to render it into an i
     } 
   });
 ```
+Indiranagar's bounding box is `{ latPos: 12.9869119, latMin: 12.973003100000001, lonPos: 77.6479874, lonMin: 77.6400004 }`.
 
 
