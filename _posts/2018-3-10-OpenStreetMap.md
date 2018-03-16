@@ -71,5 +71,25 @@ An OSM file contains a list of elements. An element is either a node, a way or a
 [![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
 
 ## Understanding map data, i.e., re-rendering it.
-If we are able to take the map data and then understand it, we should be able to render it. To render the map, we will create a tile, similarly to an image tile you obtain in all map software. In order to center the neighborhood on an image with given dimension, we will compute the bounding box of the data. Each node contains `(latitude, longitude)` coordinates. By iterating through each node we will be able to determine the 4 most far away geo-locations.
+Parsing the map data and then understand it will allow us to render it into an image tile like all online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates. To 
+
+```javascript
+  /* Our bounding box is aligned on the axis, thus only 4 coordinates are necessary to store it */
+  var bb = { 
+    latPos: -Infinity,
+    latMin: Infinity,
+    lonPos: -Infinity,
+    lonMin: Infinity
+  };
+
+  items.forEach(item => {
+    if (item.type === 'node') {
+      if (item.lat > bb.latPos) { bb.latPos = item.lat; }
+      if (item.lon > bb.lonPos) { bb.lonPos = item.lon; }
+      if (item.lat < bb.latMin) { bb.latMin = item.lat; }
+      if (item.lon < bb.lonMin) { bb.lonMin = item.lon; }
+    } 
+  });
+```
+
 
