@@ -75,7 +75,7 @@ Parsing the map data and then understand it will allow us to render it into an i
 
 ```javascript
   /* Our bounding box is aligned on the axis, thus only 4 coordinates are necessary to store it */
-  var bb = { 
+  var box = { 
     latPos: -Infinity,
     latMin: Infinity,
     lonPos: -Infinity,
@@ -84,10 +84,10 @@ Parsing the map data and then understand it will allow us to render it into an i
 
   items.forEach(item => {
     if (item.type === 'node') {
-      if (item.lat > bb.latPos) { bb.latPos = item.lat; }
-      if (item.lon > bb.lonPos) { bb.lonPos = item.lon; }
-      if (item.lat < bb.latMin) { bb.latMin = item.lat; }
-      if (item.lon < bb.lonMin) { bb.lonMin = item.lon; }
+      if (item.lat > box.latPos) { box.latPos = item.lat; }
+      if (item.lon > box.lonPos) { box.lonPos = item.lon; }
+      if (item.lat < box.latMin) { box.latMin = item.lat; }
+      if (item.lon < box.lonMin) { box.lonMin = item.lon; }
     } 
   });
 ```
