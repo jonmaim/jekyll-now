@@ -72,17 +72,22 @@ An OSM file contains a list of elements. An element is either a node, a way or a
 [![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
 
 ## Understanding map data, i.e., re-rendering it.
-Parsing the map data and then understand it will allow us to render it into an image tile like all online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates. To 
+Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates.  
+
+The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(x, y)` axis.
 
 ```javascript
-  /* Our bounding box is aligned on the axis, thus only 4 coordinates are necessary to store it */
+  /* axis-aligned bounding box */
   var box = { 
     latPos: -Infinity,
     latMin: Infinity,
     lonPos: -Infinity,
     lonMin: Infinity
   };
+```
+Finding the coordinates of the bounding box by iterating through all nodes.
 
+```javascript
   items.forEach(item => {
     if (item.type === 'node') {
       if (item.lat > box.latPos) { box.latPos = item.lat; }
