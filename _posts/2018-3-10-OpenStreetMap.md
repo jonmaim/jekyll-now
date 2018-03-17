@@ -63,7 +63,7 @@ An OSM file contains a list of elements. An element is either a node, a way or a
 
 ### Node
 
-| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by its latitude, longitude. |
+| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by its latitude, longitude. Nodes in aggreagate form the map geometry. Way and relation define structure around nodes and don't contain geometry. |
 
 ### Way
 [![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) A way is an ordered list of nodes
@@ -72,9 +72,12 @@ An OSM file contains a list of elements. An element is either a node, a way or a
 [![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
 
 ## Understanding map data, i.e., re-rendering it.
-Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates.  
+Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. 
 
-The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(x, y)` axis.
+### Bounding box
+The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates.  
+
+The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(lat, lon)` system of coordinates.
 
 ```javascript
   /* axis-aligned bounding box */
@@ -99,4 +102,5 @@ Finding the coordinates of the bounding box by iterating through all nodes.
 ```
 Indiranagar's bounding box is `{ latPos: 12.9869119, latMin: 12.973003100000001, lonPos: 77.6479874, lonMin: 77.6400004 }`.
 
+Now that we have found the bounding box in `(lat, lon)`, we have to map it to a bitmap with a `(x, y)` coordinates system.
 
