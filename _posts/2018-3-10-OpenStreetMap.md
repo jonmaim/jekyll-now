@@ -61,15 +61,19 @@ We discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and
 ## OpenStreetMap elements
 An OSM file contains a list of elements. An element is either a node, a way or a relation.
 
-### Node
+### Nodes
 
-| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by its latitude, longitude. Nodes in aggreagate form the map geometry. Way and relation define structure around nodes and don't contain geometry. |
+| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by a `(latitude, longitude)` pair of coordinates. Nodes in aggreagate form the map's geometry, while ways and relations define its structure. |
 
-### Way
-[![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) A way is an ordered list of nodes
+### Ways
 
-### Relation
-[![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) A relation is an element with one or more tags plus an ordered list elements. 
+| [![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) | A way is an ordered list of nodes and doesn't contain geometry. |
+
+### Relations
+
+| [![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) | A relation is an element with one or more tags plus an ordered list elements. Similarly to a way, a relation doesn't either contain geometry. |
+
+Ways and relations define structure around nodes and don't contain geometry.
 
 ## Understanding map data, i.e., re-rendering it.
 Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. 
@@ -102,5 +106,5 @@ Finding the coordinates of the bounding box by iterating through all nodes.
 ```
 Indiranagar's bounding box is `{ latPos: 12.9869119, latMin: 12.973003100000001, lonPos: 77.6479874, lonMin: 77.6400004 }`.
 
-Now that we have found the bounding box in `(lat, lon)`, we have to map it to a bitmap with a `(x, y)` coordinates system.
+Now that we have found the bounding box in `(lat, lon)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
 
