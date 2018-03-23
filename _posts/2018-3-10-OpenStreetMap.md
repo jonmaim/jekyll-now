@@ -79,17 +79,17 @@ Ways and relations define structure around nodes and don't contain geometry.
 Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. 
 
 ### Bounding box
-The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(latitude, longitude)` pair of coordinates.  
+The neighborhood's bounding box is the axis-aligned rectangle which encompass all the map data. The OSM elements containing a `geo-location` are the nodes. Each node contains one `(longitude, latitude)` pair of coordinates.  
 
-The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(lat, lon)` system of coordinates.
+The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(lon, lat)` system of coordinates.
 
 ```javascript
   /* axis-aligned bounding box */
   var box = { 
-    latPos: -Infinity,
-    latMin: Infinity,
+    lonMin: Infinity,
     lonPos: -Infinity,
-    lonMin: Infinity
+    latMin: Infinity,
+    latPos: -Infinity,
   };
 ```
 Finding the coordinates of the bounding box by iterating through all nodes.
@@ -97,24 +97,31 @@ Finding the coordinates of the bounding box by iterating through all nodes.
 ```javascript
   items.forEach(item => {
     if (item.type === 'node') {
-      if (item.lat > box.latPos) { box.latPos = item.lat; }
       if (item.lon > box.lonPos) { box.lonPos = item.lon; }
-      if (item.lat < box.latMin) { box.latMin = item.lat; }
+      if (item.lat > box.latPos) { box.latPos = item.lat; }
       if (item.lon < box.lonMin) { box.lonMin = item.lon; }
+      if (item.lat < box.latMin) { box.latMin = item.lat; }
     } 
   });
 ```
-Indiranagar's bounding box is `{ latPos: 12.9869119, latMin: 12.973003100000001, lonPos: 77.6479874, lonMin: 77.6400004 }`.
+Indiranagar's bounding box is `{lonMin: 77.6400004, lonPos: 77.6479874, latMin: 12.973003100000001, latPos: 12.9869119}`.
 
-Now that we have found the bounding box in `(lat, lon)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
+Now that we have found the bounding box in `(lon, lat)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
+
+#### Longitudes
+A longitude value is the `x` coordinate between `-180` and `180`. The `0` longitude is the line passing through north pole, south pole and Greenwhich. 
+
+#### Latitudes
+A latitude value is the `y` coordinate between `+90` at the north pole, `0` at the equator and `-90` at the south pole. Latitude lines are formed where the latitude stays constant.
+
+![Longitude and latitude on a sphere]({{site.baseurl}}/images/OSM/lon_lat.png)
+*Longitude and latitude on a sphere*
 
 ![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
 *A bitmap `(x, y)` coordinate system*
 
-![Latitude, longitude explained on a sphere]({{site.baseurl}}/images/OSM/lat_long.png)
-*Latitude, longitude explained on a sphere*
-
-
+![Mapping `(lon, lat)` into a `(x, y)` bitmap]({{site.baseurl}}/images/OSM/map_bb_onto_bitmap.png)
+*Mapping `(lon, lat)` into a `(x, y)` bitmap: `y` values are inverted*
 
 
 
