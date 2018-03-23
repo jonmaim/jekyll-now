@@ -49,7 +49,7 @@ var stream = fs.createReadStream(process.argv[2]).pipe(osm).pipe(through.obj(fun
 }));
 
 stream.on('finish', function(){
-  console.log('finish', types);
+  console.log('finish', types); 
 });
 ```
 Let's run this program.
@@ -107,4 +107,14 @@ Finding the coordinates of the bounding box by iterating through all nodes.
 Indiranagar's bounding box is `{ latPos: 12.9869119, latMin: 12.973003100000001, lonPos: 77.6479874, lonMin: 77.6400004 }`.
 
 Now that we have found the bounding box in `(lat, lon)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
+
+![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
+*A bitmap `(x, y)` coordinate system*
+
+![Latitude, longitude explained on a sphere]({{site.baseurl}}/images/OSM/lat_lon.png)
+*Latitude, longitude explained on a sphere*
+
+
+
+
 
