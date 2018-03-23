@@ -111,7 +111,7 @@ Now that we have found the bounding box in `(lat, lon)`, we have to map it to a 
 ![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
 *A bitmap `(x, y)` coordinate system*
 
-![Latitude, longitude explained on a sphere]({{site.baseurl}}/images/OSM/lat_lon.png)
+![Latitude, longitude explained on a sphere]({{site.baseurl}}/images/OSM/lat_long.png)
 *Latitude, longitude explained on a sphere*
 
 
