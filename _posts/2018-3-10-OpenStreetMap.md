@@ -127,12 +127,32 @@ A latitude value is the `y` coordinate between `+90` at the north pole, `0` at t
 ![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
 *A bitmap `(x, y)` coordinate system*
 
+```javascript
+var bitmap = {
+  width: 1024,
+  height: 1024,
+};
+```
+Mapping `(lon, lat)` points is done without worrying about the curvature of Earth. And thus we don't need to use a complex projection like the Mercator projection. Indeed, when working with a map with a small surface, we can consider applying `(lon, lat)` onto a `2D` plan and it should be just fine. In our case, the plan is a bitmap whose origin point is the top-left corner. From that origin, `x` axis goes toward the right and `y` axis goes toward the bottom.
+
 ![Mapping `(lon, lat)` into a `(x, y)` bitmap]({{site.baseurl}}/images/OSM/map_bb_onto_bitmap.png)
 *Mapping `(lon, lat)` into a `(x, y)` bitmap: `y` values are inverted*
 
+```javascript
+var mapping = {
+  deltaLonMap: box.lonMax - box.lonMin,
+  deltaLatMap: box.latMax - box.latMin,
+  lon: n.lon,
+  lat: n.lat
+};
+mapping.xNormalized = (mapping.lon - box.lonMin) / mapping.deltaLonMap;
+mapping.yNormalized = 1 - ((mapping.lat - box.latMin) / mapping.deltaLatMap);
+mapping.x = mapping.xNormalized * bitmap.width;
+mapping.y = mapping.yNormalized * bitmap.height;
+```
+*Each node needs to be mapped onto the bitmap to find its pixel coordinate*
 
 ![Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
 *Left: result of mapping `(lon, lat)` values of nodes on a bitmap; right: result as seen on OpenStreetMap website.*
 
-Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height 2 times as big as its width.  
-
+Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height approximately twi times as large as its width.  
