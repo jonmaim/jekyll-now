@@ -130,5 +130,5 @@ A latitude value is the `y` coordinate between `+90` at the north pole, `0` at t
 *Mapping `(lon, lat)` into a `(x, y)` bitmap: `y` values are inverted*
 
 ![Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
-*Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.*
+*Left: result of mapping `(lon, lat)` values of nodes on a bitmap; right: result as seen on OpenStreetMap website.*
 
