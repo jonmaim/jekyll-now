@@ -118,11 +118,14 @@ Now that we have found the `(lon, lat)` bounding box, we can start maping it to 
 #### Longitudes
 A longitude value is the `x` coordinate between `-180` and `180`. The `0` longitude is the line passing through north pole, south pole and Greenwhich. 
 
+![Longitude]({{site.baseurl}}/images/OSM/longitude.png)
+*Longitude on a sphere*
+
 #### Latitudes
 A latitude value is the `y` coordinate between `+90` at the north pole, `0` at the equator and `-90` at the south pole. Latitude lines are formed where the latitude stays constant.
 
-![Longitude and latitude on a sphere]({{site.baseurl}}/images/OSM/lon_lat.png)
-*Longitude and latitude on a sphere*
+![Latitude]({{site.baseurl}}/images/OSM/latitude.png)
+*Latitude on a sphere*
 
 ![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
 *A bitmap `(x, y)` coordinate system*
