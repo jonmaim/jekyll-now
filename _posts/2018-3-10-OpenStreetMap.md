@@ -158,7 +158,11 @@ mapping.y = mapping.yNormalized * bitmap.height;
 ```
 *Each node needs to be mapped onto the bitmap to find its pixel coordinate*
 
-![Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
+![Left: result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
 *Left: result of mapping `(lon, lat)` values of nodes on a bitmap; right: result as seen on OpenStreetMap website.*
 
-Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height approximately twi times as large as its width.  
+Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height approximately two times as large as its width. 
+
+
+![Left: result of mapping `(lon, lat)` and taking bounding box ratio into account; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
+*Left: result of mapping `(lon, lat)` and taking bounding box ratio into account; right: result as seen on OpenStreetMap website.*
