@@ -18,7 +18,8 @@ The extract download link is sent by email in PBF format ([Protocolbuffer Binary
 
 ## Parsing data
 
-Next step is to parse the PBF file with your programming tool of choice. In my case it is `node` with `yarn` module installer. There is a module called [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) that will allow us to easily load a `pbf` file. 
+Next step is to parse the PBF file with your programming tool of choice. In my case it is `node` with `yarn` module installer.
+There is no need to understand the PBF format, we just need to get a module that will parse it for us and give us the different elements. There is a module called [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) that will allow us to easily load a `pbf` file. 
 
 Let's get started and install the modules.
 ```
@@ -108,11 +109,11 @@ At the beginning we have to idea about the values of our bounding box. By initia
     latMax: -Infinity,
   };
 ```
-* Initializing a bounding box data structure *
+*Initializing a bounding box data structure*
 
 Indiranagar's bounding box is `{lonMin: 77.6400004, lonMax: 77.6479874, latMin: 12.973003100000001, latMax: 12.9869119}`.
 
-Now that we have found the bounding box in `(lon, lat)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
+Now that we have found the `(lon, lat)` bounding box, we can start maping it to a `(x, y)` bitmap.
 
 #### Longitudes
 A longitude value is the `x` coordinate between `-180` and `180`. The `0` longitude is the line passing through north pole, south pole and Greenwhich. 
@@ -129,6 +130,9 @@ A latitude value is the `y` coordinate between `+90` at the north pole, `0` at t
 ![Mapping `(lon, lat)` into a `(x, y)` bitmap]({{site.baseurl}}/images/OSM/map_bb_onto_bitmap.png)
 *Mapping `(lon, lat)` into a `(x, y)` bitmap: `y` values are inverted*
 
+
 ![Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
 *Left: result of mapping `(lon, lat)` values of nodes on a bitmap; right: result as seen on OpenStreetMap website.*
+
+Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height 2 times as big as its width.  
 
