@@ -83,28 +83,34 @@ The neighborhood's bounding box is the axis-aligned rectangle which encompass al
 
 The axis-aligned bounding box contains only 4 coordinates, which is enough to define a rectangle aligned to the `(lon, lat)` system of coordinates.
 
-```javascript
-  /* axis-aligned bounding box */
-  var box = { 
-    lonMin: Infinity,
-    lonPos: -Infinity,
-    latMin: Infinity,
-    latPos: -Infinity,
-  };
-```
-Finding the coordinates of the bounding box by iterating through all nodes.
+To find the extreme points of a set of points, we need to iterate through each of them and check if the current point is an extreme point or not. At the end of the iteration we can be sure to have found the most extreme points as we checked each of them individually. 
 
 ```javascript
   items.forEach(item => {
     if (item.type === 'node') {
-      if (item.lon > box.lonPos) { box.lonPos = item.lon; }
-      if (item.lat > box.latPos) { box.latPos = item.lat; }
       if (item.lon < box.lonMin) { box.lonMin = item.lon; }
-      if (item.lat < box.latMin) { box.latMin = item.lat; }
+      if (item.lon > box.lonMax) { box.lonMax = item.lon; }
+      if (item.lat < box.latMin) { box.latMin = item.lat; }      
+      if (item.lat > box.latMax) { box.latMax = item.lat; }
     } 
   });
 ```
-Indiranagar's bounding box is `{lonMin: 77.6400004, lonPos: 77.6479874, latMin: 12.973003100000001, latPos: 12.9869119}`.
+*Finding the coordinates of the bounding box by iterating through all nodes.*
+
+At the beginning we have to idea about the values of our bounding box. By initialzing the values with positive or negative inifity we ensure we have the bounding box at each step of the iteration. 
+
+```javascript
+  /* axis-aligned bounding box */
+  var box = { 
+    lonMin: Infinity,
+    lonMax: -Infinity,
+    latMin: Infinity,
+    latMax: -Infinity,
+  };
+```
+* Initializing a bounding box data structure *
+
+Indiranagar's bounding box is `{lonMin: 77.6400004, lonMax: 77.6479874, latMin: 12.973003100000001, latMax: 12.9869119}`.
 
 Now that we have found the bounding box in `(lon, lat)`, we have to map it to a bitmap with a `(x, y)` coordinate's system.
 
@@ -122,7 +128,6 @@ A latitude value is the `y` coordinate between `+90` at the north pole, `0` at t
 
 ![Mapping `(lon, lat)` into a `(x, y)` bitmap]({{site.baseurl}}/images/OSM/map_bb_onto_bitmap.png)
 *Mapping `(lon, lat)` into a `(x, y)` bitmap: `y` values are inverted*
-
 
 ![Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
 *Left: first visual result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.*
