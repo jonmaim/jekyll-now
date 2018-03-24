@@ -62,17 +62,20 @@ We discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and
 ## OpenStreetMap elements
 An OSM file contains a list of elements. An element is either a node, a way or a relation.
 
+![Longitude]({{site.baseurl}}/images/OSM/node_way_relation.png)
+*OpenStreeMaps' data contains nodes, ways and relations*
+
 ### Nodes
 
-| [![OSM node]({{site.baseurl}}/images/OSM/node.png)](https://wiki.openstreetmap.org/wiki/Node) | A node is a single point in space defined by a `(latitude, longitude)` pair of coordinates. Nodes in aggreagate form the map's geometry, while ways and relations define its structure. |
+A [node](https://wiki.openstreetmap.org/wiki/Node) is a single point in space defined by a `(longitude, latitude)` pair of coordinates. Nodes in aggreagate form the map's geometry, while ways and relations define its structure.
 
 ### Ways
 
-| [![OSM node]({{site.baseurl}}/images/OSM/way.png)](https://wiki.openstreetmap.org/wiki/Way) | A way is an ordered list of nodes and doesn't contain geometry. |
+A [way](https://wiki.openstreetmap.org/wiki/Way) is an ordered list of nodes and doesn't contain geometry.
 
 ### Relations
 
-| [![OSM relation]({{site.baseurl}}/images/OSM/relation.png)](https://wiki.openstreetmap.org/wiki/Relation) | A relation is an element with one or more tags plus an ordered list elements. Similarly to a way, a relation doesn't either contain geometry. |
+A [relation](https://wiki.openstreetmap.org/wiki/Relation) is an element with one or more tags plus an ordered list elements. Similarly to a way, a relation doesn't either contain geometry.
 
 Ways and relations define structure around nodes and don't contain geometry.
 
