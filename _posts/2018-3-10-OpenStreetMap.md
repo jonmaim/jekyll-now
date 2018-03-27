@@ -3,7 +3,7 @@ layout: post
 title: Parsing and understanding OpenStreetMap data
 ---
 
-Our goal is to be able to obtain map data from OpenStreetMap (OSM) and then be able to detect the semantic for each zone, e.g., roads, buildings, parcs, etc. I will then be able to tag each area of a neighborhood with tags like walkable / not-walkable, inside / outside.
+Our programming's adventures are paved with multiple enigmas. Our goal is to be able to obtain map data from OpenStreetMap (OSM) and then be able to detect the semantic for each zone, e.g., roads, buildings, parcs, etc. I will then be able to tag each area of a neighborhood with tags like walkable / not-walkable, inside / outside.
 
 From my first understanding on how to do get map data, we first have to download some area XML files. Here is what looks like [a good starting point](https://wiki.openstreetmap.org/wiki/Databases_and_data_access_APIs).
 
@@ -161,8 +161,12 @@ mapping.y = mapping.yNormalized * bitmap.height;
 ![Left: result of mapping `(lon, lat)` values on a bitmap; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render01_compare.png)
 *Left: result of mapping `(lon, lat)` values of nodes on a bitmap; right: result as seen on OpenStreetMap website.*
 
-Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height approximately two times as large as its width. 
+Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's neighborhood has a height approximately two times as large as its width. So let's try to take the map ratio into account in our projection calculations.
 
+```javascript
+/* show code with ratio */
+```
 
-![Left: result of mapping `(lon, lat)` and taking bounding box ratio into account; right: result as seen on OpenStreetMap website.]({{site.baseurl}}/images/OSM/re_render02_compare.png)
-*Left: result of mapping `(lon, lat)` and taking bounding box ratio into account; right: result as seen on OpenStreetMap website.*
+![Top-down superpositioning of nodes and OpenStreetMap]({{site.baseurl}}/images/OSM/superposition2.png)
+*Top-down superpositioning of nodes and OpenStreetMap: clearly a projection problem*
+
