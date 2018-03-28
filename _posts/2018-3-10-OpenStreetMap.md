@@ -179,8 +179,45 @@ Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's nei
 
 As you can see in the above figure, we most probably have a problem with the mapping calculations we're using. You know what? I just prefer gettings lanes and houses rather than solving this problem. And if it is a problem. It is more important at this stage to get results instead of correctness.
 
-### Drawing ways and relations
+### Drawing ways
 
+Here is a random `way`:
 
+```javascript
+{ type: 'way',
+  id: 543271084,
+  tags: 
+   { name: '80 Feet Road(Sir C.V. Raman Hospital Road)',
+     oneway: 'yes',
+     highway: 'secondary',
+     'name:kn': '೮೦ ಅಡಿ ರಸ್ತೆ',
+     surface: 'asphalt',
+     'cycleway:left': 'no' },
+  refs: 
+   [ 3370456523,
+     355428774,
+     2268586320,
+     5336663608,
+     2268586324,
+     253179982,
+     4345418570,
+     5165031727,
+     1563306444,
+     4386563001,
+     253179981,
+     2268586334,
+     3370456532,
+     343316186,
+     253179978 ] }
+```
+
+Each `way` contains a list of ordered list of node ids. This list of node, `refs`, represents a polyline. We can thus iterate over this list of node and obtain the `(lon, lat)` for each of them.
+
+```javascript
+  
+```
+
+![Rendering nodes (red) and ways (black)]({{site.baseurl}}/images/OSM/re_render03_nodes_and_ways.png)
+*Rendering nodes (red) and ways (black)*
 
 
