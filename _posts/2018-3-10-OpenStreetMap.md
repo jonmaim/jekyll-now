@@ -118,17 +118,21 @@ Indiranagar's bounding box is `{lonMin: 77.6400004, lonMax: 77.6479874, latMin: 
 
 Now that we have found the `(lon, lat)` bounding box, we can start maping it to a `(x, y)` bitmap.
 
-#### Longitudes
+### Longitude
+
 A longitude value is the `x` coordinate between `-180` and `180`. The `0` longitude is the line passing through north pole, south pole and Greenwhich. 
 
 ![Longitude]({{site.baseurl}}/images/OSM/longitude.png)
 *Longitude on a sphere*
 
-#### Latitudes
+### Latitude
+
 A latitude value is the `y` coordinate between `+90` at the north pole, `0` at the equator and `-90` at the south pole. Latitude lines are formed where the latitude stays constant.
 
 ![Latitude]({{site.baseurl}}/images/OSM/latitude.png)
 *Latitude on a sphere*
+
+### Bitmap
 
 ![A bitmap `(x, y)` coordinate system]({{site.baseurl}}/images/OSM/bitmap.png)
 *A bitmap `(x, y)` coordinate system*
@@ -139,6 +143,9 @@ var bitmap = {
   height: 1024,
 };
 ```
+
+### Mapping
+
 Mapping `(lon, lat)` points is done without worrying about the curvature of Earth. And thus we don't need to use a complex projection like the Mercator projection. Indeed, when working with a map with a small surface, we can consider applying `(lon, lat)` onto a `2D` plan and it should be just fine. In our case, the plan is a bitmap whose origin point is the top-left corner. From that origin, `x` axis goes toward the right and `y` axis goes toward the bottom.
 
 ![Mapping `(lon, lat)` into a `(x, y)` bitmap]({{site.baseurl}}/images/OSM/map_bb_onto_bitmap.png)
@@ -169,4 +176,11 @@ Our bitmap is of size `1024x1024`, thus a square. However, the Indiranagar's nei
 
 ![Top-down superpositioning of nodes and OpenStreetMap]({{site.baseurl}}/images/OSM/superposition2.png)
 *Top-down superpositioning of nodes and OpenStreetMap: clearly a projection problem*
+
+As you can see in the above figure, we most probably have a problem with the mapping calculations we're using. You know what? I just prefer gettings lanes and houses rather than solving this problem. And if it is a problem. It is more important at this stage to get results instead of correctness.
+
+### Drawing ways and relations
+
+
+
 
