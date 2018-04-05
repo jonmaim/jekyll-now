@@ -3,7 +3,7 @@ layout: post
 title: Parsing and understanding OpenStreetMap data
 ---
 
-We want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built with layers, asymetry, and everything else that makes it human-made. Procedural generation might have been a solution, but we chose to create our urban space based on real data from OpenStreetMap (OSM). In this blog post, we want to demonstrate how to export data from OSM, how to parse it and finally how to understand it.
+We want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built with layers, asymetry, and everything else that makes it human-made. Procedural generation might have been a solution, but we chose to create our urban space based on real data from [OpenStreetMap](https://www.openstreetmap.org) (OSM). In this blog post, we want to demonstrate how to export data from OSM, how to parse it and finally how to understand it.
 
 ## Downloading data
 
