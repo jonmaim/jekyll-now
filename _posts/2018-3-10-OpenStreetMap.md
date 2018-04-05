@@ -3,11 +3,11 @@ layout: post
 title: Parsing and understanding OpenStreetMap data
 ---
 
-Our programming's adventures are paved with multiple enigmas. Our goal is to be able to obtain map data from OpenStreetMap (OSM) and then be able to detect the semantic for each zone, e.g., roads, buildings, parcs, etc. I will then be able to tag each area of a neighborhood with tags like walkable / not-walkable, inside / outside.
-
-From my first understanding on how to do get map data, we first have to download some area XML files. Here is what looks like [a good starting point](https://wiki.openstreetmap.org/wiki/Databases_and_data_access_APIs).
+We want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built with layers, asymetry, and everything else that makes it human-made. Procedural generation might have been a solution, but we chose to create our urban space based on real data from OpenStreetMap (OSM). In this blog post, we want to demonstrate how to export data from OSM, how to parse it and finally how to understand it.
 
 ## Downloading data
+
+The first challenge is to export map data from OSM. How to do get map data? We will first download some OSM files containing a city neighborhood. We chose the Indiranagar neighborhood in Bangalore, India.
 
 The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downloading) explains how to download the whole map data for the planet, which is several dozens of GBs. We want to start small and only want to download a small area like Indiranagar neighborhood in the city of Bangalore, India. Fortunately there is a tool available to [extract a defined geo-fence](https://extract.bbbike.org/?sw_lng=77.64&sw_lat=12.973&ne_lng=77.648&ne_lat=12.987&format=osm.pbf&coords=77.64%2C12.973%7C77.644%2C12.973%7C77.648%2C12.974%7C77.648%2C12.979%7C77.646%2C12.987%7C77.643%2C12.986%7C77.64%2C12.985%7C77.64%2C12.979&city=Indiranagar%2C%20East%20Zone%2C%20Bengaluru%2C%20Bangalore%20Urban%2C%20Karnataka%2C%20560038%2C%20India).
 
@@ -59,27 +59,25 @@ node index.js planet_77.64_12.973_4379f04c.osm.pbf
 ```
 We discover that the Indiranagar neighborhood contains 7682 nodes, 1824 ways and 22 relations.
 
-## OpenStreetMap elements
-An OSM file contains a list of elements. An element is either a node, a way or a relation.
+## Understanding map data, i.e., re-rendering it.
 
-![Longitude]({{site.baseurl}}/images/OSM/node_way_relation.png)
-*OpenStreeMaps' data contains nodes, ways and relations*
+Finally we have to make sense of the parsed data. We have to first extract the geometry of the space, which allow us to create different areas. Then, we need to differentiate each area, e.g., streets, buildings, parcs, etc. Each area will then get a distinctive look. Let's have a look at the different OSM elements that are part of each OSM file. 
 
-### Nodes
+![OSM elements]({{site.baseurl}}/images/OSM/node_way_relation.png)
+*An OSM element is either a node, a way, or a relation*
+
+### Node
 
 A [node](https://wiki.openstreetmap.org/wiki/Node) is a single point in space defined by a `(longitude, latitude)` pair of coordinates. Nodes in aggreagate form the map's geometry, while ways and relations define its structure.
 
-### Ways
+### Way
 
-A [way](https://wiki.openstreetmap.org/wiki/Way) is an ordered list of nodes and doesn't contain geometry.
+A [way](https://wiki.openstreetmap.org/wiki/Way) is an ordered list of nodes with some tags.
 
-### Relations
+### Relation
 
-A [relation](https://wiki.openstreetmap.org/wiki/Relation) is an element with one or more tags plus an ordered list elements. Similarly to a way, a relation doesn't either contain geometry.
+A [relation](https://wiki.openstreetmap.org/wiki/Relation) is an element with some tags plus an ordered list of elements. Similarly to a way, a relation doesn't contain itself geometry.
 
-Ways and relations define structure around nodes and don't contain geometry.
-
-## Understanding map data, i.e., re-rendering it.
 Parsing the map data and then understand it will allow us to render it into an image tile similarly to what online map software are doing. In order to center the neighborhood on an image with given dimension, we will first compute the bounding box of the map data. 
 
 ### Bounding box
