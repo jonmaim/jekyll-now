@@ -3,13 +3,22 @@ layout: post
 title: Parsing and understanding OpenStreetMap data
 ---
 
-We want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built with layers, asymetry, and everything else that makes it human-made. Procedural generation is one the solutions to generate urban landscapes, but we chose to create ours based on real data from [OpenStreetMap](https://www.openstreetmap.org) (OSM). In this blog post, we demonstrate how to export data from OSM, parse it and finally how to understand it.
+We want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built. Although procedural generation is one solution to generate urban landscapes, we chose to create ours based on real data from [OpenStreetMap](https://www.openstreetmap.org) (OSM). In this blog post, we demonstrate how to export data from OSM, parse it and finally how to understand it.
 
 ## Downloading data
 
-The first challenge is to export map data from OSM. How to do get map data? We will first download some OSM files containing a city neighborhood. We chose the Indiranagar neighborhood in Bangalore, India.
+We're starting with a small neighborhood in Bangalore, India called [Indiranagar](https://www.openstreetmap.org/node/448991617).
 
-The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downloading) explains how to download the whole map data for the planet, which is several dozens of GBs. We want to start small and only want to download a small area like Indiranagar neighborhood in the city of Bangalore, India. Fortunately there is a tool available to [extract a defined geo-fence](https://extract.bbbike.org/?sw_lng=77.64&sw_lat=12.973&ne_lng=77.648&ne_lat=12.987&format=osm.pbf&coords=77.64%2C12.973%7C77.644%2C12.973%7C77.648%2C12.974%7C77.648%2C12.979%7C77.646%2C12.987%7C77.643%2C12.986%7C77.64%2C12.985%7C77.64%2C12.979&city=Indiranagar%2C%20East%20Zone%2C%20Bengaluru%2C%20Bangalore%20Urban%2C%20Karnataka%2C%20560038%2C%20India).
+### XML
+
+Downloading `XML` files from OSM is extremely simple: click the `Export` button on the OSM page. Et voila! 
+
+![What you see is what you export]({{site.baseurl}}/images/OSM/osm_export.png)
+*What you see is what you export*
+
+### PBF
+
+An alternative is to get `PBF` files, which are binary and thus faster to load. The [OSM downloading page](https://wiki.openstreetmap.org/wiki/Planet.osm#Downloading) explains how to download the whole map data for the planet, which is several dozens of GBs. We want to start small and only want to download a small area like Indiranagar neighborhood in the city of Bangalore, India. Fortunately there is a tool available to [extract a defined geo-fence](https://extract.bbbike.org/?sw_lng=77.64&sw_lat=12.973&ne_lng=77.648&ne_lat=12.987&format=osm.pbf&coords=77.64%2C12.973%7C77.644%2C12.973%7C77.648%2C12.974%7C77.648%2C12.979%7C77.646%2C12.987%7C77.643%2C12.986%7C77.64%2C12.985%7C77.64%2C12.979&city=Indiranagar%2C%20East%20Zone%2C%20Bengaluru%2C%20Bangalore%20Urban%2C%20Karnataka%2C%20560038%2C%20India).
 
 ![Extract area]({{site.baseurl}}/images/OSM/extract_area.png)
 *Extract OpenStreetMap area interface*
@@ -18,7 +27,7 @@ The extract download link is sent by email in PBF format ([Protocolbuffer Binary
 
 ## Parsing data
 
-Next step is to parse the PBF file with your programming tool of choice. In my case it is `node` with `yarn` module installer.
+Next step is to parse the `PBF` file with your programming tool of choice. In my case it is `node` with `yarn` module installer.
 There is no need to understand the PBF format, we just need to get a module that will parse it for us and give us the different elements. There is a module called [osm-pbf-parser](https://github.com/substack/osm-pbf-parser) that will allow us to easily load a `pbf` file. 
 
 Let's get started and install the modules.
