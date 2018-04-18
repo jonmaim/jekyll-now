@@ -3,8 +3,6 @@ layout: post
 title: City blueprints 
 ---
 
-# Parsing and understanding OpenStreetMap data
-
 In this post, we demonstrate how to export data from OSM, parse it and finally how to understand it.
 
 In essence, we want to build a believable urban virtual world. It doesn't necessarily have to look realistic but it has to appear organically built. Although procedural generation is one solution to generate urban landscapes, we chose to create ours based on real data from [OpenStreetMap](https://www.openstreetmap.org) (OSM). Let's start!
