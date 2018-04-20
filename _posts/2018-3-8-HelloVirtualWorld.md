@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Hello Virtual World!
+title: Hello virtual world!
 ---
 
 Hello virtual world!
