@@ -3,8 +3,6 @@ layout: post
 title: Hello virtual world!
 ---
 
-Hello virtual world!
-
 In this blog, we want to show you how to create virtual cities.
 
 Made from static html pages, this blog will cause no harm to any web server whatsoever, it is guaranteed 100% generated. No command-line tool has been deployed on the computer during the making of. [Github](https://github.com) is able to detect this [Jekyll](https://github.com/barryclark/jekyll-now)'s setup from a public [repository](https://github.com/jonmaim/jonmaim.github.io) to automatically generate and host this site. Files are directly modified in the github web interface. Modifications are saved, each time a new commit is added to the git repository.  
